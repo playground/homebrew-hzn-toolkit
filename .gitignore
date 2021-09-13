@@ -49,6 +49,7 @@ Thumbs.db
 models
 inference_graph
 *.zip
+*.gz
 *.pem
 dist/
 dist-old
