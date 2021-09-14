@@ -13,14 +13,20 @@
     "assets": [
     ],
     "targets": [
-      "node12-linux-x64",
-      "node12-macos-x64",
-      "node12-win-x86"
+      "node14-linux-x64",
+      "node14-macos-x64",
+      "node14-linux-arm64",
+      "node14-linux-armv7",
+      "node14-win-x86"
     ]
   },  
   "scripts": {
-    "package": "pkg . --targets node14-macos-x64 --output oh",
     "build": "npx tsc && chmod +x build/*.js && chmod +x build/**/*.js",
+    "package2": "pkg . --targets node14-macos-x64 --output oh",
+    "package": "npm run release --target=node14-macos-x64 --output oh",
+    "release": "bin/build.js",
+    "archive": "tar -cvzf oh-macos-x64.tar.gz oh",
+    "signature": "",
     "bundle": "webpack --config webpack.config.js && chmod +x lib/*.js",
     "build-bundle": "npm run build && npm run bundle",
     "deploy": "lib/mms-deploy.js",

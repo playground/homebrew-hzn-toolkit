@@ -50,6 +50,7 @@ models
 inference_graph
 *.zip
 *.gz
+oh-*
 *.pem
 dist/
 dist-old

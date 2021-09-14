@@ -48,6 +48,8 @@ export class Env {
   setAdditionalEnv() {
     pEnv.MMS_PATTERN_NAME = `pattern-${pEnv.MMS_SERVICE_NAME}-${pEnv.ARCH}`;
     pEnv.MMS_CONTAINER = `${pEnv.YOUR_DOCKERHUB_ID}/${pEnv.MMS_SERVICE_NAME}_${pEnv.ARCH}:${pEnv.MMS_SERVICE_VERSION}`.replace(/\r?\n|\r/g, '')
+    pEnv.PATTERN_NAME = `pattern-${pEnv.SERVICE_NAME}`;
+    pEnv.SERVICE_CONTAINER = `${pEnv.YOUR_DOCKERHUB_ID}/${pEnv.SERVICE_NAME}_${pEnv.ARCH}:${pEnv.SERVICE_VERSION}`.replace(/\r?\n|\r/g, '')
   }
   getEnv() {
     return this.env;
@@ -65,11 +67,11 @@ export class Env {
   getFSSCSSUrl() {
     return pEnv.HZN_FSS_CSSURL;
   }
-  getMyServiceName() {
-    return pEnv.YOUR_SERVICE_NAME;
+  getServiceName() {
+    return pEnv.SERVICE_NAME;
   }
-  getMyServiceVersion() {
-    return pEnv.YOUR_SERVICE_VERSION;
+  getServiceVersion() {
+    return pEnv.SERVICE_VERSION;
   }
   getMMSSharedVolume() {
     return pEnv.MMS_SHARED_VOLUME;
@@ -106,5 +108,14 @@ export class Env {
   }
   getMMSObjectFile() {
     return pEnv.MMS_OBJECT_FILE
+  }
+  getContainerCreds() {
+    return pEnv.CONTAINER_CREDS;
+  }
+  getPatterName() {
+    return pEnv.PATTERN_NAME;
+  }
+  getServiceContainer() {
+    return pEnv.SERVICE_CONTAINER;
   }
 }
