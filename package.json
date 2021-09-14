@@ -22,8 +22,7 @@
   },  
   "scripts": {
     "build": "npx tsc && chmod +x build/*.js && chmod +x build/**/*.js",
-    "package2": "pkg . --targets node14-macos-x64 --output oh",
-    "package": "npm run release --target=node14-macos-x64 --output oh",
+    "package": "pkg . --targets node14-macos-x64 --output oh",
     "release": "bin/build.js",
     "archive": "tar -cvzf oh-macos-x64.tar.gz oh",
     "signature": "",
