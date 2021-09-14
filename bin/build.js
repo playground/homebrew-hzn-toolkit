@@ -22,13 +22,12 @@ let build = {
   package: () => {
     if(target && cliName) {
       let arg = `pkg . --targets ${target} --output ${cliName}-${target}`;
-      exec(arg, {maxBuffer: 1024 * 2000}, (err, stdout, stderr) => {
+      exec(arg, {maxBuffer: 1024 * 5000}, (err, stdout, stderr) => {
         if(!err) {
-          console.log(stdout)
+          console.log(arg)
           console.log(`done packaging ${cliName}`);
         } else {
           console.log('failed to package', err);
-          observer.error(err);
         }
       });  
     } else {
@@ -39,12 +38,30 @@ let build = {
   archive: () => {
     if(archiveName && cliName) {
       let arg = `tar -cvzf ${archiveName} ${cliName}`;
-      exec(arg, {maxBuffer: 1024 * 2000}, (err, stdout, stderr) => {
+      exec(arg, {maxBuffer: 1024 * 5000}, (err, stdout, stderr) => {
         if(!err) {
-          console.log(stdout)
+          console.log(arg)
           console.log(`done archiving ${cliName}`);
         } else {
           console.log('failed to archive', err);
+          observer.error(err);
+        }
+      });  
+    } else {
+      console.log('archivename and cliname are required...');
+      process.exit(0);
+    }
+  },
+  signature: () => {
+    if(archiveName) {
+      let arg = `sha256sum ${archiveName}`;
+      exec(arg, {maxBuffer: 1024 * 2000}, (err, stdout, stderr) => {
+        if(!err) {
+          console.log(arg)
+          console.log(stdout)
+          console.log(`done signing ${cliName}`);
+        } else {
+          console.log('failed to sign', err);
           observer.error(err);
         }
       });  
